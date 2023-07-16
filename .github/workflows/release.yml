@@ -27,6 +27,7 @@ jobs:
       - name: Cache Burrito OTP  deps
         uses: actions/cache@v3
         with:
+          key: ${{ runner.os }}-burrito-
           path: |
             ~/.cache/burrito_file_cache/
             ~/burrito_out/
