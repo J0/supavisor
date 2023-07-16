@@ -34,8 +34,11 @@ jobs:
           version: 0.10.0
       - name: Create release
         run: mix release supavisor_bin
-      - uses: AButler/upload-release-assets@v2.0
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
         with:
-          files: "supavisor_bin-${GITHUB_REF#refs/*/}"
-          release-tag: v${GITHUB_REF#refs/*/}
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: burrito_out/*
+          tag: ${{ github.ref }}
+          overwrite: true
+          file_glob: true
